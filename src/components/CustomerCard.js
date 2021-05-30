@@ -1,5 +1,9 @@
 import React, {useState} from 'react'
-import classes from './Card.module.css';
+import Card from '@material-ui/core/Card'
+import TypoGraphy from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button'
+import { CardActions } from '@material-ui/core';
 
 export const CustomerCard = ({ customer, index }) => {
     const [showMinimumBid, setShowMinimumBid] = useState(false)
@@ -12,10 +16,40 @@ export const CustomerCard = ({ customer, index }) => {
         return bids.sort((a,b) => a.amount - b.amount)[0].amount;
     }
 
+    const useStyles = makeStyles({
+        root: {
+          maxWidth: 400,
+          margin: 'auto',
+          marginBottom: 12,
+          padding: 8,
+          borderRadius: 16,
+          paddingBottom: 20,
+          background: '#BE6E46'
+        },
+        bullet: {
+          display: 'inline-block',
+          margin: '0 2px',
+          transform: 'scale(0.8)',
+        },
+        title: {
+          fontSize: 14,
+        },
+        pos: {
+          marginBottom: 12,
+        },
+        outline: {
+            border: 'none',
+            borderBottom: '1px solid rgba(0,0,0,.12)',
+            marginBottom: 20
+        }
+    });
+
+    const classes = useStyles();
+
     return (
-        <div className={classes.Card} key={index}>
-            <h1>Customer Info</h1>
-            <hr></hr>
+        <Card className={classes.root} variant="outlined">
+            <TypoGraphy variant="h4"> Customer Info </TypoGraphy>
+            <hr className={classes.outline}></hr>
             { customer.avatarUrl &&
                 <img src={customer.avatarUrl} alt="avatar"></img>
             }
@@ -34,9 +68,9 @@ export const CustomerCard = ({ customer, index }) => {
                     { showMinimumBid &&
                         <p> Minimum bid: {getLowestBid(customer.bids)} </p>
                     }
-                    <button onClick={() => setShowMinimumBid(true)}>Show min bid</button>
+                    <Button color="primary" onClick={() => setShowMinimumBid(true)} variant="contained"> Show min bid </Button>
                 </div>
             }
-        </div>
+        </Card>
     )
 }

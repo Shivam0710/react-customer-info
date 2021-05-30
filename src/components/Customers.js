@@ -1,4 +1,6 @@
 import React,{useState} from 'react';
+import Button from '@material-ui/core/Button'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios';
 import classes from './Card.module.css';
 import { Pagination } from './Pagination';
@@ -14,9 +16,12 @@ const Card = () =>{
     const apiURL="https://intense-tor-76305.herokuapp.com/merchants";
     
     const fetchData = async () => {
-        const response = await axios.get(apiURL)
-        setLoading(true)
+      setLoading(true)
+      const response = await axios.get(apiURL)
+      setTimeout(() => {
         setCustomers(response.data)
+        setLoading(false)
+      }, 2000)
     }
 
     let indexOfLastPost = currentPage * customerPerPage;
@@ -30,10 +35,17 @@ const Card = () =>{
       <h2>Fetch a list from an API and display it</h2>
 
       <div className={classes.button}>
-        <button onClick={fetchData}>
+        <Button style={{background: '#BE6E46'}} onClick={fetchData} variant="contained" color="primary">
           Fetch Data
-        </button>
+        </Button>
       </div>
+      { loading &&
+        <div style={{ height: '400px', position: 'relative' }}>
+          <div style={{ margin: 0, position: 'absolute', top: '50%', left: '50%', transform: 'translateY(-50%) translateX(-50%)' }}>
+            <CircularProgress style={{color: '#BE6E46'}} />
+          </div>
+        </div>
+      }
       { customers.length > 0 &&
         <Pagination 
             totalCustomers={customers.length}
@@ -41,7 +53,7 @@ const Card = () =>{
             onPageClick={setCurrentPage}
             currentPage={currentPage}
         />
-        }
+      }
       <div className={classes.inner}>
           {
              currentCustomers && currentCustomers.map((customer,index)=>{
