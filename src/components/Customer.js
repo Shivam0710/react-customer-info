@@ -35,7 +35,7 @@ export const Customer = () => {
 
     return (
         <React.Fragment>
-            <Button variant="contained" href="/" style={{ background: '#BE6E46', marginLeft: 12, color: '#fff' }}>
+            <Button variant="contained" href="/react-customer-info" style={{ background: '#BE6E46', marginLeft: 12, color: '#fff' }}>
                 Go Back
             </Button>
             <Card variant="outlined" className={classes.root}>
