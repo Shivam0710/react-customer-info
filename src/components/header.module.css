@@ -1,0 +1,15 @@
+.header{
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: #303030;
+    color: #BE6E46;
+    display: flex;
+    justify-content: center;
+    font-family: 'Noto Serif', serif;
+}
+.header img {
+    width: 6rem;
+    height: auto;
+    margin-right: 1rem;
+
+}

@@ -1,0 +1,31 @@
+.albums{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,300px));
+  grid-gap: 1rem;
+  justify-content: center;
+  font-weight: 400;
+}
+
+.load{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.paginationContainer {
+  display: flex;
+  width: 40%;
+  margin: 0 auto;
+}
+
+.paginationContainer .pageNumber {
+  flex-grow: 1;
+  background: gray;
+  border-right: 1px solid;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.pageNumber.selected {
+  background: #BE6E46;
+}

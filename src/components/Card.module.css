@@ -1,0 +1,31 @@
+.Card{
+    width: 40%;
+    height:auto;
+    background-color: #BE6E46;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30%;
+    border: 2px solid black;
+    margin-top: 10px;
+}
+.Card img{
+    width:5rem;
+    height: auto;
+    border-radius: 50%;
+}
+
+.Card button {
+    color: #BE6E46;
+    border: 2px solid white;
+    background-color: black;
+    border-radius: 0px;
+    padding: 10px 20px;
+
+}
+
+.outer{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+
+}
