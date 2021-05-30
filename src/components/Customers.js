@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios';
@@ -18,11 +18,13 @@ const Card = () =>{
     const fetchData = async () => {
       setLoading(true)
       const response = await axios.get(apiURL)
-      setTimeout(() => {
-        setCustomers(response.data)
-        setLoading(false)
-      }, 2000)
+      setCustomers(response.data)
+      setLoading(false)
     }
+
+    useEffect(() => {
+      fetchData()
+    }, [])
 
     let indexOfLastPost = currentPage * customerPerPage;
     let indexOfFirstPost = indexOfLastPost - customerPerPage;
@@ -34,11 +36,6 @@ const Card = () =>{
       <h1>Customer Information</h1>
       <h2>Fetch a list from an API and display it</h2>
 
-      <div className={classes.button}>
-        <Button style={{background: '#BE6E46'}} onClick={fetchData} variant="contained" color="primary">
-          Fetch Data
-        </Button>
-      </div>
       { loading &&
         <div style={{ height: '400px', position: 'relative' }}>
           <div style={{ margin: 0, position: 'absolute', top: '50%', left: '50%', transform: 'translateY(-50%) translateX(-50%)' }}>
