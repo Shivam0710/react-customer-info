@@ -1,5 +1,4 @@
 import React,{useEffect, useState} from 'react';
-import Button from '@material-ui/core/Button'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import axios from 'axios';
 import classes from './Card.module.css';
@@ -11,14 +10,29 @@ const Card = () =>{
     const [loading, setLoading] = useState(false);
     const [customers, setCustomers] =useState([]);
     const [currentPage, setCurrentPage] =useState(1);
-    const [customerPerPage, setCustomerPerPage] =useState(5);
+    const [customerPerPage] =useState(5);
+
+    let getHighestBid = (bids) => {
+      return bids.sort((a,b) => a.amount - b.amount).reverse()[0].amount;
+    }
 
     const apiURL="https://intense-tor-76305.herokuapp.com/merchants";
     
     const fetchData = async () => {
       setLoading(true)
       const response = await axios.get(apiURL)
-      setCustomers(response.data)
+      let customers = response.data;
+      customers.map(customer => {
+        if(customer.bids && customer.bids.length > 0) {
+          customer["highestBid"] = getHighestBid(customer.bids)
+        } else {
+          customer["highestBid"] = 0
+        }
+        
+        return customer
+      })
+      customers = customers.sort((a,b) => a.highestBid - b.highestBid).reverse()
+      setCustomers(customers)
       setLoading(false)
     }
 

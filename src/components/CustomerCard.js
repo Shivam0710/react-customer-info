@@ -51,10 +51,9 @@ export const CustomerCard = ({ customer, index }) => {
     });
 
     const classes = useStyles();
-    console.log(customer);
 
     return (
-            <Card className={classes.root} variant="outlined">
+            <Card className={classes.root} variant="outlined" key={index}>
                 <CardActionArea component={Link} to={`/customer/${customer.id}`}>
                 <TypoGraphy variant="h4" className={classes.titleStyle}> Customer Info </TypoGraphy>
                 <hr className={classes.outline}></hr>
