@@ -19,7 +19,7 @@ export const CustomerCard = ({ customer, index }) => {
 
     const useStyles = makeStyles({
         root: {
-          maxWidth: 400,
+          width: '39%',
           margin: 'auto',
           marginBottom: 12,
           padding: 8,
@@ -43,6 +43,10 @@ export const CustomerCard = ({ customer, index }) => {
             border: 'none',
             borderBottom: '1px solid rgba(0,0,0,.12)',
             marginBottom: 20
+        },
+        titleStyle: {
+            fontFamily: 'cursive',
+            padding: '10px 0'
         }
     });
 
@@ -52,7 +56,7 @@ export const CustomerCard = ({ customer, index }) => {
     return (
             <Card className={classes.root} variant="outlined">
                 <CardActionArea component={Link} to={`/customer/${customer.id}`}>
-                <TypoGraphy variant="h4"> Customer Info </TypoGraphy>
+                <TypoGraphy variant="h4" className={classes.titleStyle}> Customer Info </TypoGraphy>
                 <hr className={classes.outline}></hr>
                 { customer.avatarUrl &&
                     <img src={customer.avatarUrl} alt="avatar"></img>
