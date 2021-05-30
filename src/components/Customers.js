@@ -11,7 +11,7 @@ const Card = () =>{
     const [currentPage, setCurrentPage] =useState(1);
     const [customerPerPage, setCustomerPerPage] =useState(5);
 
-    const apiURL="http://intense-tor-76305.herokuapp.com/merchants";
+    const apiURL="https://intense-tor-76305.herokuapp.com/merchants";
     
     const fetchData = async () => {
         const response = await axios.get(apiURL)
